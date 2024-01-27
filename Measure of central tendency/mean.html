@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+//i couldnt get my codes to run as a single javascript thats why i wrote them in html using <script>
+//i have tried downloading node.js and a code runner all to no avail
+
+
+
+class MeanOfNumbers{
+    constructor() {
+        this.numbers = [];
+
+    }
+
+    addNumber(number) {
+        this.numbers.push(Number(number));
+    }
+
+    calculateMean() {
+        const sum = this.numbers.reduce((acc, num) => acc + num, 0);
+        const mean = sum / this.numbers.length;
+        return mean;
+    }
+
+}
+
+
+const meanOfNumbers = new MeanOfNumbers();
+
+const userInput = prompt('For the mean,enter numbers seperated by commas: ');
+
+const inputNumbers = userInput.split(',').map(Number);
+
+inputNumbers.forEach((number) => meanOfNumbers.addNumber(number));
+
+const result = meanOfNumbers.calculateMean();
+
+console.log(`Mean: ${result}`);
+
+</script>
+</body>
+</html>

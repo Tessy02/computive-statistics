@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class QuartileDeviation1 {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateQuartiles() {
+    const sortedNumbers = this.numbers.slice().sort((a, b) => a - b);
+    const length = sortedNumbers.length;
+
+    const medianIndex = Math.floor(length / 2);
+    const firstQuartile = this.calculateMedian(sortedNumbers.slice(0, medianIndex));
+    const thirdQuartile = this.calculateMedian(sortedNumbers.slice(medianIndex + (length % 2 === 0 ? 0 : 1)));
+
+    return { firstQuartile, thirdQuartile };
+  }
+
+  calculateMedian(numbers) {
+    const length = numbers.length;
+    const middleIndex = Math.floor(length / 2);
+
+    if (length % 2 === 0) {
+      const middle1 = numbers[middleIndex - 1];
+      const middle2 = numbers[middleIndex];
+      return (middle1 + middle2) / 2;
+    } else {
+      return numbers[middleIndex];
+    }
+  }
+
+  calculateQuartileDeviation() {
+    if (this.numbers.length === 0) {
+      return null; 
+    }
+
+    const { firstQuartile, thirdQuartile } = this.calculateQuartiles();
+    const quartileDeviation = (thirdQuartile - firstQuartile) / 2;
+
+    return quartileDeviation;
+  }
+}
+
+
+const quartileDev = new QuartileDeviation1();
+
+const userInput = prompt('Enter numbers separated by commas:');
+
+const inputNumbers = userInput.split(',').map(Number);
+
+inputNumbers.forEach((number) => quartileDev.addNumber(number));
+
+const quartileResult = quartileDev.calculateQuartileDeviation();
+
+console.log(`Quartile Deviation: ${quartileResult}`);
+
+    </script>
+</body>
+</html>

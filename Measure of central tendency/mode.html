@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      
+   <script>
+
+class ModeOfNumbers {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateMode() {
+    const frequencyMap = new Map();
+    
+    
+    this.numbers.forEach((num) => {
+      frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+    });
+
+    
+    let mode = [];
+    let maxFrequency = 0;
+
+    frequencyMap.forEach((frequency, num) => {
+      if (frequency > maxFrequency) {
+        mode = [num];
+        maxFrequency = frequency;
+      } else if (frequency === maxFrequency) {
+        mode.push(num);
+      }
+    });
+
+    return mode.length > 1 ? mode : mode[0];
+  }
+}
+
+const modeOfNumbers = new ModeOfNumbers();
+
+
+const userInput = prompt('For the mode,enter numbers separated by commas:');
+
+
+const inputNumbers = userInput.split(',').map(Number);
+
+
+inputNumbers.forEach((number) => modeOfNumbers.addNumber(number));
+
+const result = modeOfNumbers.calculateMode();
+console.log(`Mode: ${result}`);
+
+
+   </script>
+</body>
+</html>

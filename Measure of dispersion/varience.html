@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class VarianceOfNumbers {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateMean() {
+    const sum = this.numbers.reduce((acc, num) => acc + num, 0);
+    const mean = sum / this.numbers.length;
+    return mean;
+  }
+
+  calculateVariance() {
+    if (this.numbers.length === 0) {
+      return null; 
+    }
+
+    const mean = this.calculateMean();
+    const squaredDifferences = this.numbers.map((num) => Math.pow(num - mean, 2));
+    const variance = squaredDifferences.reduce((acc, squaredDiff) => acc + squaredDiff, 0) / this.numbers.length;
+
+    return variance;
+  }
+}
+
+
+const varianceNum = new VarianceOfNumbers();
+
+const userInput = prompt('Enter numbers separated by commas:');
+
+const inputNumbers = userInput.split(',').map(Number);
+
+inputNumbers.forEach((number) => varianceNum.addNumber(number));
+
+const varianceResult = varianceNum.calculateVariance();
+console.log(`Variance is: ${varianceResult}`);
+
+    </script>
+</body>
+</html>

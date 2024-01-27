@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+class RangeOfNumbers {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateRange() {
+    if (this.numbers.length === 0) {
+      return null; 
+    }
+
+    const minNumber = Math.min(...this.numbers);
+    const maxNumber = Math.max(...this.numbers);
+    const range = maxNumber - minNumber;
+
+    return range;
+  }
+}
+
+const rangeOfNumbers = new RangeOfNumbers();
+
+const userInput = prompt('For tne range,enter numbers separated by commas:');
+
+const inputNumbers = userInput.split(',').map(Number);
+
+inputNumbers.forEach((number) => rangeOfNumbers.addNumber(number));
+
+const result = rangeOfNumbers.calculateRange();
+
+console.log(`Range: ${result}`);
+
+    </script>
+</body>
+</html>

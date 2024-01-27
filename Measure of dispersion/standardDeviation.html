@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class StandardDeviationOfNumbers {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateMean() {
+    const sum = this.numbers.reduce((acc, num) => acc + num, 0);
+    const mean = sum / this.numbers.length;
+    return mean;
+  }
+
+  calculateStandardDeviation() {
+    if (this.numbers.length === 0) {
+      return null; 
+    }
+
+    const mean = this.calculateMean();
+    const squaredDifferences = this.numbers.map((num) => Math.pow(num - mean, 2));
+    const variance = squaredDifferences.reduce((acc, squaredDiff) => acc + squaredDiff, 0) / this.numbers.length;
+    const standardDeviation = Math.sqrt(variance);
+
+    return standardDeviation;
+  }
+}
+
+
+const stdDev = new StandardDeviationOfNumbers();
+
+const userInput = prompt('Enter numbers separated by commas:');
+
+const inputNumbers = userInput.split(',').map(Number);
+
+inputNumbers.forEach((number) => stdDev.addNumber(number));
+
+const stdDevResult = stdDev.calculateStandardDeviation();
+
+console.log(`Standard Deviation is: ${stdDevResult}`);
+
+    </script>
+</body>
+</html>

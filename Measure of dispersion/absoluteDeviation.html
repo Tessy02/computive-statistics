@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class AbsoluteDeviationNum {
+  constructor() {
+    this.numbers = [];
+  }
+
+  addNumber(number) {
+    this.numbers.push(Number(number));
+  }
+
+  calculateMean() {
+    const sum = this.numbers.reduce((acc, num) => acc + num, 0);
+    const mean = sum / this.numbers.length;
+    return mean;
+  }
+
+  calculateAbsoluteDeviation() {
+    if (this.numbers.length === 0) {
+      return null; 
+    }
+
+    const mean = this.calculateMean();
+    const absoluteDifferences = this.numbers.map((num) => Math.abs(num - mean));
+    const absoluteDeviation = absoluteDifferences.reduce((acc, absDiff) => acc + absDiff, 0) / this.numbers.length;
+
+    return absoluteDeviation;
+  }
+}
+
+
+const absolutDeviation = new AbsoluteDeviationNum();
+
+const userInput = prompt('Enter numbers separated by commas:');
+
+
+const inputNumbers = userInput.split(',').map(Number);
+
+
+inputNumbers.forEach((number) => absolutDeviation.addNumber(number));
+
+
+const Result = absolutDeviation.calculateAbsoluteDeviation();
+console.log(`Absolute Deviation: ${Result}`);
+
+    </script>
+</body>
+</html>
